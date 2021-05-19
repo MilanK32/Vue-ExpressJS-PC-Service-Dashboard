@@ -1,33 +1,20 @@
 <template>
-    <div id="home" class="w-full mt-8">
+    <div id="home" class="mx-auto mt-8">
         <loading :active.sync="isLoading" :can-cancel="false" :is-full-page="fullPage" />
-        <h1 class="text-3xl text-center pt-4">Service List</h1>
-        <div class="flex flex-wrap">
-            <div class="min-h-30 w-2/6 p-6" v-for="(part, index) in parts" :key="index">
-                <div class="md:grid md:grid-cols-1 md:gap-4 space-y-4 md:space-y-0 mt-4">
-                    <div class="shadow border rounded-lg">
-                        <div class="flex items-center space-x-4 p-4">
-                            <div class="flex items-center p-4 bg-purple-600 text-white rounded-lg w-1/6">
-                                <img src="https://image.flaticon.com/icons/png/128/3039/3039498.png" alt="settings">
-                            </div>
-                            <div class="flex-1">
-                                <p class="text-gray-500 font-semibold">Service info</p>
-                                <div class="flex items-baseline space-x-4">
-                                    <h2 class="text-2xl font-semibold">
-                                        {{ part.part_type }}
-                                    </h2>
-                                    <p class="text-green-700 flex font-semibold space-x-1">
-                                        <span>-</span>
-                                        <span class="font-bold pl-1">{{ part.days_to_fix }} days left</span>
-                                    </p>
-                                </div>
-                                <p class="text-gray-600">{{ part.description }}</p>
-                            </div>
-                        </div>
-                        <router-link :to="'/services/' + part._id"
-                            class="block p-3 text-lg font-semibold bg-purple-50 text-purple-800 hover:bg-purple-100 cursor-pointer">
-                            Details
-                        </router-link>
+        <div class="flex flex-col bg-white m-auto p-auto mx-8" v-if="!isLoading">
+            <h1 class="text-3xl text-center p-4 mb-14">Analytics</h1>
+            <div class="flex pb-10 hide-scroll-bar">
+                <div class="grid grid-cols-2 gap-8">
+                    <div class="inline-block">
+                        <h5 class="text-xl text-gray-400 pb-4">Service parts/price</h5>
+                        <apexchart width="700" type="bar" :options="linechart" :series="lineSeries" class="z-0">
+                        </apexchart>
+                    </div>
+
+                    <div class="inline-block">
+                        <h5 class="text-xl text-gray-400 pb-4">Status/days left</h5>
+                        <apexchart width="700" type="area" :options="barchart" :series="barSeries" class="z-0">
+                        </apexchart>
                     </div>
                 </div>
             </div>
@@ -37,31 +24,59 @@
 
 <script>
     import PartService from '../PartService'
-    import Loading from 'vue-loading-overlay';
-    import 'vue-loading-overlay/dist/vue-loading.css';
 
     export default {
-        components: {
-            Loading
-        },
-
         data() {
             return {
                 parts: [],
                 isLoading: true,
-                fullPage: true
+                fullPage: true,
+                partTypes: [],
+                linechart: {
+                    chart: {
+                        id: 'vuechart-example'
+                    },
+                    xaxis: {
+                        categories: []
+                    },
+                    colors:['#7c3aed']
+                },
+                barchart: {
+                    chart: {
+                        id: 'vuechart-example'
+                    },
+                    xaxis: {
+                        categories: []
+                    },
+                },
+                lineSeries: [{
+                    name: 'Service price',
+                    data: []
+                }],
+                barSeries: [{
+                    name: 'series-2',
+                    data: []
+                }]
             }
         },
 
         created() {
-            this.fetchParts()
+            this.getParts()
         },
 
         methods: {
-            async fetchParts() {
-                this.parts = await PartService.getParts()
+            async getParts() {
+                this.parts = await PartService.getParts();
+
+                this.parts.forEach((part) => {
+                    this.linechart.xaxis.categories.push(part.part_type)
+                    this.lineSeries[0].data.push(part.price)
+                    
+                    this.barchart.xaxis.categories.push(part.part_type)
+                    this.barSeries[0].data.push(part.days_to_fix)
+                })
                 this.isLoading = false
             }
-        },
+        }
     }
 </script>

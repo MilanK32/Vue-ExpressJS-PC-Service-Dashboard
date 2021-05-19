@@ -24,9 +24,20 @@ import './PartService'
 import "tailwindcss/tailwind.css"
 import './css/app.css'
 
+// loader
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
+Vue.component('loading', Loading);
+
+// charts
+import VueApexCharts from 'vue-apexcharts'
+Vue.use(VueApexCharts)
+Vue.component('apexchart', VueApexCharts)
+
 Vue.config.productionTip = false
 
+
 new Vue({
-  render: h => h(App),
-  router: router,
+    render: h => h(App),
+    router: router,
 }).$mount('#app')

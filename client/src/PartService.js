@@ -7,7 +7,7 @@ export default {
     createPart(data) {
         axios.post(url, data)
             .then(() => {
-                window.location.replace('/')
+                window.location.replace('/services')
             });
     },
 
@@ -27,7 +27,7 @@ export default {
     updatePart(id, data) {
         axios.put(url + '/' + id, data)
         .then(() => {
-            window.location.replace('/')
+            window.location.replace('/services')
         });
     },
 

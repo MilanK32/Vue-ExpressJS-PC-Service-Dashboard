@@ -8,6 +8,13 @@
                     <li class="mr-3 flex-1">
                         <router-link to="/"
                             class="block py-1 md:py-3 px-3 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
+                            <i class="fas fa-chart-area pr-0 md:pr-3"></i>
+                            Home
+                        </router-link>
+                    </li>
+                    <li class="mr-3 flex-1">
+                        <router-link to="/services"
+                            class="block py-1 md:py-3 px-3 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
                             <i class="fas fa-tasks pr-0 md:pr-3"></i>
                             Services
                         </router-link>
@@ -16,14 +23,7 @@
                         <router-link to="/create"
                             class="block py-1 md:py-3 px-3 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-purple-500">
                             <i class="fas fa-plus pr-0 md:pr-3"></i>
-                            New
-                        </router-link>
-                    </li>
-                    <li class="mr-3 flex-1">
-                        <router-link to="/analytics"
-                            class="block py-1 md:py-3 px-3 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
-                            <i class="fas fa-chart-area pr-0 md:pr-3"></i>
-                            Analytics
+                            New Service
                         </router-link>
                     </li>
                 </ul>
