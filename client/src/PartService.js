@@ -35,7 +35,7 @@ export default {
     deletePart(id) {
         axios.delete(url + '/delete/' + id)
         .then(() => {
-            window.location.replace('/')
+            window.location.replace('/services')
         });
     }
 };
