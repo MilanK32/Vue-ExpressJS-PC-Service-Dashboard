@@ -22,7 +22,10 @@
       return {
         parts: []
       }
-    }
+    },
+    created() {
+      document.title = 'PC Service Dashboard'
+    },
   }
 </script>
 

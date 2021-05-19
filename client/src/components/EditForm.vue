@@ -29,6 +29,14 @@
             </div>
             <div class="mb-6">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="daysFix">
+                    Price
+                </label>
+                <input
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                    id="price" type="number" placeholder="Price" v-model="part.price">
+            </div>
+            <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="price">
                     Days to fix
                 </label>
                 <input
@@ -49,7 +57,7 @@
             </div>
             <div class="flex items-center justify-between">
                 <button
-                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    class="bg-purple-500 hover:bg-purple-700 duration-300 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                     type="submit">
                     Submit
                 </button>
@@ -63,14 +71,8 @@
 
 <script>
     import PartService from '../PartService'
-    import Loading from 'vue-loading-overlay';
-    import 'vue-loading-overlay/dist/vue-loading.css';
 
     export default {
-        components: {
-            Loading
-        },
-
         data() {
             return {
                 part: null,

@@ -1,5 +1,5 @@
 <template>
-    <div id="navbar" class="sticky top-0">
+    <div id="navbar" class="sticky top-0 z-50">
         <nav class="bg-gray-800">
             <div class="mx-auto px-2 sm:px-6 lg:px-8">
                 <div class="relative flex items-center justify-between h-16">

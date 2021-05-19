@@ -6,10 +6,10 @@
             <div class="max-w-4xl bg-white w-full rounded-lg shadow-lg">
                 <div class="p-4 border-b">
                     <h2 class="text-2xl ">
-                        Applicant Information
+                        Service Information
                     </h2>
                     <p class="text-sm text-gray-500">
-                        Personal details and application.
+                        Personal details.
                     </p>
                 </div>
                 <div>
@@ -69,7 +69,7 @@
                     </div>
                 </div>
             </div>
-            <div class="delete-btn text-center flex justify-center mt-5">
+            <div class="delete-btn text-center flex justify-center mt-10">
                 <router-link :to="'/services/' + part._id + '/edit'"
                     class="bg-yellow-300 hover:bg-yellow-400 transition-all duration-300 text-white font-bold py-2 px-4 mr-3 rounded w-1/3"
                     @click="updatePart()" v-if="part">
@@ -87,14 +87,8 @@
 
 <script>
     import PartService from '../PartService'
-    import Loading from 'vue-loading-overlay';
-    import 'vue-loading-overlay/dist/vue-loading.css';
 
     export default {
-        components: {
-            Loading
-        },
-
         data() {
             return {
                 part: null,
