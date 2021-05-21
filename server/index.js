@@ -1,7 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
-const bodyParser = require('body-parser');
 const cors = require('cors');
 
 //express app
@@ -12,9 +11,7 @@ app.use(morgan('dev'));
 app.use(cors());
 
 app.use(express.json());
-app.use(express.urlencoded({
-  extended: true
-}));
+app.use(express.urlencoded({ extended: true }));
 
 // set port, listen for requests
 const PORT = process.env.PORT || 5000;
@@ -32,9 +29,9 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useFi
     console.log(err);
 });
 
-const parts = require('./routes/api/partRoutes');
+const services = require('./routes/api/serviceRoutes');
 
-app.use('/api/parts', parts);
+app.use('/api/services', services);
 
 
 

@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 .router-link-exact-active {
-    @apply bg-gray-500 duration-500 rounded;
+    @apply bg-purple-700 duration-500 rounded;
 }

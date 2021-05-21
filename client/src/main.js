@@ -18,7 +18,7 @@ const router = new VueRouter({
 })
 
 //api
-import './PartService'
+import './Service'
 
 //css
 import "tailwindcss/tailwind.css"
