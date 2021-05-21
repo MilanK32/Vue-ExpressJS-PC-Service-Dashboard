@@ -1,5 +1,5 @@
 <template>
-    <div id="partDetails" class="w-2/5 mx-auto">
+    <div id="serviceDetails" class="w-2/5 mx-auto">
         <loading :active.sync="isLoading" :can-cancel="false" :is-full-page="fullPage" />
 
         <div class="mt-16 px-4" v-if="!isLoading">
@@ -18,7 +18,7 @@
                             Email
                         </p>
                         <p>
-                            {{ part.email }}
+                            {{ service.email }}
                         </p>
                     </div>
                     <div class="md:grid md:grid-cols-2 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
@@ -26,15 +26,15 @@
                             Date of submission
                         </p>
                         <p>
-                            {{ dateFormat(part.createdAt) }}
+                            {{ dateFormat(service.createdAt) }}
                         </p>
                     </div>
                     <div class="md:grid md:grid-cols-2 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
                         <p class="text-gray-600">
-                            PC Part
+                            PC part
                         </p>
                         <p>
-                            {{ part.part_type }}
+                            {{ service.service_part }}
                         </p>
                     </div>
                     <div class="md:grid md:grid-cols-2 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
@@ -42,7 +42,7 @@
                             Description
                         </p>
                         <p>
-                            {{ part.description }}
+                            {{ service.description }}
                         </p>
                     </div>
                     <div class="md:grid md:grid-cols-2 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
@@ -50,7 +50,7 @@
                             Price
                         </p>
                         <p>
-                            {{ part.price }} RSD
+                            {{ service.price }} RSD
                         </p>
                     </div>
                     <div class="md:grid md:grid-cols-2 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
@@ -58,26 +58,26 @@
                             Days to fix
                         </p>
                         <p>
-                            {{ part.days_to_fix }}
+                            {{ service.days_to_fix }}
                         </p>
                     </div>
                     <div class="md:grid md:grid-cols-2 hover:bg-gray-50 md:space-y-0 space-y-1 p-4">
                         <p class="text-gray-600">
                             Status
                         </p>
-                        <p>{{ part.status }}</p>
+                        <p>{{ service.status }}</p>
                     </div>
                 </div>
             </div>
             <div class="delete-btn text-center flex justify-center mt-10">
-                <router-link :to="'/services/' + part._id + '/edit'"
+                <router-link :to="'/services/' + service._id + '/edit'"
                     class="bg-yellow-300 hover:bg-yellow-400 transition-all duration-300 text-white font-bold py-2 px-4 mr-3 rounded w-1/3"
-                    @click="updatePart()" v-if="part">
+                    @click="updateService()" v-if="service">
                     Update
                 </router-link>
                 <button
                     class="bg-red-500 hover:bg-red-600 transition-all duration-300 text-white font-bold py-2 px-4 rounded w-1/3"
-                    @click="deletePart()">
+                    @click="deleteService()">
                     Delete
                 </button>
             </div>
@@ -86,30 +86,30 @@
 </template>
 
 <script>
-    import PartService from '../PartService'
+    import Service from '../Service'
 
     export default {
         data() {
             return {
-                part: null,
+                service: null,
                 isLoading: true,
                 fullPage: true
             }
         },
 
         created() {
-            this.fetchSinglePart()
+            this.fetchSingleService()
         },
 
         methods: {
-            async fetchSinglePart() {
-                this.part = await PartService.getSinglePart(this.$route.params.id)
+            async fetchSingleService() {
+                this.service = await Service.getSingleService(this.$route.params.id)
                 this.isLoading = false;
-                this.dateFormat(this.part.createdAt)
+                this.dateFormat(this.service.createdAt)
             },
 
-            async deletePart() {
-                await PartService.deletePart(this.$route.params.id)
+            async deleteService() {
+                await Service.deleteservice(this.$route.params.id)
             },
 
             dateFormat(date) {

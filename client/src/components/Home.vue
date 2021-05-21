@@ -23,12 +23,12 @@
 </template>
 
 <script>
-    import PartService from '../PartService'
+    import Service from '../Service'
 
     export default {
         data() {
             return {
-                parts: [],
+                services: [],
                 isLoading: true,
                 fullPage: true,
                 partTypes: [],
@@ -61,19 +61,19 @@
         },
 
         created() {
-            this.getParts()
+            this.getServices()
         },
 
         methods: {
-            async getParts() {
-                this.parts = await PartService.getParts();
+            async getServices() {
+                this.services = await Service.getServices();
 
-                this.parts.forEach((part) => {
-                    this.linechart.xaxis.categories.push(part.part_type)
-                    this.lineSeries[0].data.push(part.price)
+                this.services.forEach((service) => {
+                    this.linechart.xaxis.categories.push(service.service_part)
+                    this.lineSeries[0].data.push(service.price)
                     
-                    this.barchart.xaxis.categories.push(part.part_type)
-                    this.barSeries[0].data.push(part.days_to_fix)
+                    this.barchart.xaxis.categories.push(service.service_part)
+                    this.barSeries[0].data.push(service.days_to_fix)
                 })
                 this.isLoading = false
             }

@@ -1,7 +1,7 @@
-const Part = require('../models/parts');
+const Service = require('../models/service');
 
-const part_index = (req, res) => {
-    Part.find()
+const service_index = (req, res) => {
+    Service.find()
         .then((result) => {
             res.json(result);
         })
@@ -10,9 +10,9 @@ const part_index = (req, res) => {
         })
 }
 
-const part_details = (req, res) => {
+const service_details = (req, res) => {
     const id = req.params.id
-    Part.findById(id)
+    Service.findById(id)
         .then((result) => {
             res.json(result);
         })
@@ -21,9 +21,9 @@ const part_details = (req, res) => {
         });
 }
 
-const part_create_post = (req, res) => {
-    const part = new Part(req.body);
-    part.save()
+const service_create_post = (req, res) => {
+    const service = new Service(req.body);
+    service.save()
         .then((result) => {
             res.json('Service created succesfully')
         })
@@ -32,22 +32,22 @@ const part_create_post = (req, res) => {
         })
 }
 
-const part_update = (req, res) => {
+const service_update = (req, res) => {
     const id = req.params.id;
-    Part.findByIdAndUpdate(id, req.body)
+    Service.findByIdAndUpdate(id, req.body)
         .then((result) => {
-            res.json('Part updated succesfully');
+            res.json('Service updated succesfully');
         })
         .catch(err => {
             console.log(err);
         });
 }
 
-const part_delete = (req, res) => {
+const service_delete = (req, res) => {
     const id = req.params.id;
-    Part.findByIdAndDelete(id)
+    Service.findByIdAndDelete(id)
         .then((result) => {
-            res.json('Part deleted succesfully');
+            res.json('Service deleted succesfully');
         })
         .catch(err => {
             console.log(err);
@@ -55,9 +55,9 @@ const part_delete = (req, res) => {
 }
 
 module.exports = {
-    part_index,
-    part_details,
-    part_create_post,
-    part_update,
-    part_delete
+    service_index,
+    service_details,
+    service_create_post,
+    service_update,
+    service_delete
 }

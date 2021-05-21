@@ -68,7 +68,7 @@
 </template>
 
 <script>
-    import PartService from '../PartService'
+    import Service from '../Service'
 
     export default {
         data() {
@@ -86,14 +86,14 @@
             async sendData() {
                 let data = {
                     email: this.email,
-                    part_type: this.pcPart,
+                    service_part: this.pcPart,
                     description: this.description,
                     price: this.price,
                     days_to_fix: this.daysToFix,
                     status: this.status
                 }
 
-                await PartService.createPart(data)
+                await Service.createService(data)
             }
         },
     }

@@ -7,7 +7,7 @@ const partSchema = new Schema({
         required: true
     },
     
-    part_type: {
+    service_part: {
         type: String,
         required: true
     },
@@ -33,6 +33,6 @@ const partSchema = new Schema({
     }
 }, { timestamps: true });
 
-const Part = mongoose.model('Part', partSchema);
+const Service = mongoose.model('Service', partSchema);
 
-module.exports = Part;
+module.exports = Service;

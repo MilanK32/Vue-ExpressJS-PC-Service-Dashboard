@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-const url = 'http://localhost:5000/api/parts'
+const url = 'http://localhost:5000/api/services'
 
 export default {
     // Create
-    createPart(data) {
+    createService(data) {
         axios.post(url, data)
             .then(() => {
                 window.location.replace('/services')
@@ -12,19 +12,19 @@ export default {
     },
 
     // Get all 
-    async getParts() {
+    async getServices() {
         let res = await axios.get(url);
         return res.data;
     },
 
     // Get single
-    async getSinglePart(id) {
+    async getSingleService(id) {
         let res = await axios.get(url + '/' + id);
         return res.data;
     },
 
     // Update 
-    updatePart(id, data) {
+    updateService(id, data) {
         axios.put(url + '/' + id, data)
         .then(() => {
             window.location.replace('/services')
@@ -32,7 +32,7 @@ export default {
     },
 
     // Delete
-    deletePart(id) {
+    deleteService(id) {
         axios.delete(url + '/delete/' + id)
         .then(() => {
             window.location.replace('/services')
